@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+    {% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock %}</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <style>
+        body {
+            background-color: blanchedalmond;
+        }
+        h1, h2, h3, h4, h5 {
+            margin: 30px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="{% url "home" %}">Fitness Club</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    {% if instructor_id %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'instructor_dashboard' %}">Dashboard</a>
+                        </li>
+                        <!-- Add other links specific to instructors here -->
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'instructor_add_customer_fee' %}">Customer Fee</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'instructor_view_profit' %}">Profit</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'view_salary' %}">Salary</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'instructor_logout' %}">Logout</a>
+                        </li>
+                    {% else %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'instructor_login' %}">Instructor Login</a>
+                        </li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        {% block content %}{% endblock %}
+    </div>
+
+    <!-- Bootstrap JS (optional, for some components that require JS) -->
+    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+</body>
+</html>

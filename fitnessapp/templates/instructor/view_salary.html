@@ -1,0 +1,35 @@
+{% extends './instructor_base.html' %}
+
+{% block title %}
+    View Salary
+{% endblock %}
+
+{% block content %}
+    <h1>Your Salary Details</h1>
+    <table class="table">
+        <thead class="thead-dark">
+            <tr>
+                <th>Month</th>
+                <th>Amount</th>
+                <th>Payment Method</th>
+                <th>Payment Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for salary_record in instructor_salary_records %}
+                <tr>
+                    <td>{{ salary_record.month|date:"F Y" }}</td>
+                    <td>{{ salary_record.amount }}</td>
+                    <td>{{ salary_record.get_payment_method_display }}</td>
+                    <td>{{ salary_record.payment_date|date }}</td>
+                </tr>
+            {% empty %}
+                <tr>
+                    <td colspan="4">No salary records available.</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <p>Total Salary: {{ total_salary }}</p>
+{% endblock %}

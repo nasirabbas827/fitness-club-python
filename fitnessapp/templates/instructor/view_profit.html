@@ -1,0 +1,30 @@
+{% extends './instructor_base.html' %}
+
+
+{% block title %}
+    View Profit - Fitness Club
+{% endblock %}
+
+{% block content %}
+    <div class="container mt-5">
+        <h1>View Profit</h1>
+        <form method="get" class="mb-3">
+            <div class="row">
+                <div class="col">
+                    <label for="date_from">From:</label>
+                    <input type="date" id="date_from" name="date_from" class="form-control">
+                </div>
+                <div class="col">
+                    <label for="date_to">To:</label>
+                    <input type="date" id="date_to" name="date_to" class="form-control">
+                </div>
+                <div class="col">
+                    <button type="submit" class="btn btn-primary mt-4">View Profit</button>
+                </div>
+            </div>
+        </form>
+        <p>Total Income from Customer Fees: ${{ total_income }}</p>
+        <p>Total Amount Paid to Instructors as Salaries: ${{ total_salaries }}</p>
+        <p>Profit: ${{ profit }}</p>
+    </div>
+{% endblock %}

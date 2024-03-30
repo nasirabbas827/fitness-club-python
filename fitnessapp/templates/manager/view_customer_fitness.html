@@ -1,0 +1,41 @@
+{% extends './base.html' %}
+
+{% block title %}
+    View Customer Fitness - Fitness Club
+{% endblock %}
+
+{% block content %}
+    <div class="container mb-4">
+        <h1>View Customer Fitness</h1>
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Customer</th>
+                    <th>Weight</th>
+                    <th>Waist Measurement</th>
+                    <th>Height</th>
+                    <th>Goal</th>
+                    <th>BMI</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for fitness in customer_fitness %}
+                    <tr>
+                        <td>{{ fitness.customer.name }}</td>
+                        <td>{{ fitness.weight }}</td>
+                        <td>{{ fitness.waist_measurement }}</td>
+                        <td>{{ fitness.height }}</td>
+                        <td>{{ fitness.goal }}</td>
+                        <td>{{ fitness.bmi }}</td>
+                        <td>
+                            <a href="{% url 'edit_customer_fitness' fitness.id %}" class="btn btn-primary">Edit</a>
+                            <a href="{% url 'delete_customer_fitness' fitness.id %}" class="btn btn-danger">Delete</a>
+                            <a href="{% url 'view_daily_report' fitness.customer.customer_id %}" class="mt-2 btn btn-success">View Daily Report</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

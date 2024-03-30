@@ -1,0 +1,17 @@
+
+{% extends './base.html' %}
+
+{% block title %}
+    Delete Workout - Fitness Club
+{% endblock %}
+
+{% block content %}
+    <h1>Delete Workout</h1>
+  
+
+    <p>Are you sure you want to delete "{{ workout.workout_name }}"?</p>
+    <form method="post">
+        {% csrf_token %}
+        <button class="btn btn-danger" type="submit">Delete</button>
+    </form>
+{% endblock %}

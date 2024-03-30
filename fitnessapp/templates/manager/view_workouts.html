@@ -1,0 +1,37 @@
+{% extends './base.html' %}
+
+{% block title %}
+    All Workouts - Fitness Club
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <h1>All Workouts</h1>
+
+        <table class="table table-striped">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Category</th>
+                    <th>Instructor</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for workout in workouts %}
+                <tr>
+                    <td>{{ workout.workout_name }}</td>
+                    <td>{{ workout.workout_description }}</td>
+                    <td>{{ workout.category_name }}</td>
+                    <td>{{ workout.instructor.full_name }}</td>
+                    <td>
+                        <a href="{% url 'edit_workout' workout.workout_id %}" class="btn btn-primary">Edit</a>
+                        <a href="{% url 'delete_workout' workout.workout_id %}" class="btn btn-danger">Delete</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

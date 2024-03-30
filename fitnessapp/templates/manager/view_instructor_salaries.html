@@ -1,0 +1,48 @@
+{% extends './base.html' %}
+
+{% block title %}
+    View Instructor Salaries - Fitness Club
+{% endblock %}
+
+{% block content %}
+    <div class="container mt-5">
+        <h1>View Instructor Salaries</h1>
+        <form action="{% url 'export_salary_csv' %}" method="get" class="mb-3">
+            <div class="row">
+                <div class="col">
+                    <label for="date_from">From:</label>
+                    <input type="date" id="date_from" name="date_from" class="form-control">
+                </div>
+                <div class="col">
+                    <label for="date_to">To:</label>
+                    <input type="date" id="date_to" name="date_to" class="form-control">
+                </div>
+                <div class="col">
+                    <button type="submit" class="btn btn-primary mt-4">Export CSV</button>
+                </div>
+            </div>
+        </form>
+        <table class="table table-striped">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Instructor</th>
+                    <th>Month</th>
+                    <th>Amount</th>
+                    <th>Payment Method</th>
+                    <th>Payment Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for salary in salaries %}
+                <tr>
+                    <td>{{ salary.instructor.full_name }}</td>
+                    <td>{{ salary.month }}</td>
+                    <td>{{ salary.amount }}</td>
+                    <td>{{ salary.payment_method }}</td>
+                    <td>{{ salary.payment_date }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

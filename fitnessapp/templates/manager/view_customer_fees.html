@@ -1,0 +1,56 @@
+{% extends './base.html' %}
+
+{% block title %}
+    All Customer Fees - Fitness Club
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <h1>All Customer Fees</h1>
+        <form action="{% url 'export_customer_fees_csv' %}" method="get" class="mb-3">
+            <div class="row">
+                <div class="col">
+                    <label for="search_date_from">From:</label>
+                    <input type="date" id="search_date_from" name="search_date_from" class="form-control">
+                </div>
+                <div class="col">
+                    <label for="search_date_to">To:</label>
+                    <input type="date" id="search_date_to" name="search_date_to" class="form-control">
+                </div>
+                <div class="col">
+                    <button type="submit" class="btn btn-primary mt-4">Export CSV</button>
+                </div>
+            </div>
+        </form>
+
+        <table class="table table-striped">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Customer</th>
+                    <th>Date</th>
+                    <th>Total Fee</th>
+                    <th>Amount Paid</th>
+                    <th>Payment Method</th>
+                    <th>Notes</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for fee in customer_fees %}
+                <tr>
+                    <td>{{ fee.customer }}</td>
+                    <td>{{ fee.date }}</td>
+                    <td>{{ fee.total_fee }}</td>
+                    <td>{{ fee.amount_paid }}</td>
+                    <td>{{ fee.payment_method }}</td>
+                    <td>{{ fee.notes }}</td>
+                    <td>
+                        <a href="{% url 'edit_customer_fee' fee.id %}" class="btn btn-primary btn-sm">Edit</a>
+                        <a href="{% url 'delete_customer_fee' fee.id %}" class="btn btn-danger btn-sm">Delete</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

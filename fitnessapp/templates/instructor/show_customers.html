@@ -1,0 +1,32 @@
+{% extends './instructor_base.html' %}
+
+{% block title %}
+    Customers Enrolled in {{ workout.workout_name }}
+{% endblock %}
+
+{% block content %}
+    <h1>Customers Enrolled in "{{ workout.workout_name }}"</h1>
+    <div class="customer-list">
+        <ul>
+            {% for customer in customers %}
+                <li>
+                    <strong>Name:</strong> {{ customer.name }}<br>
+                    <strong>Email:</strong> {{ customer.email }}<br>
+                    {% if customer.customerfitness %}
+                        <strong>Weight:</strong> {{ customer.customerfitness.weight }} kg<br>
+                        <strong>Waist Measurement:</strong> {{ customer.customerfitness.waist_measurement }} cm<br>
+                        <strong>Height:</strong> {{ customer.customerfitness.height }} m<br>
+                        <strong>BMI:</strong> {{ customer.customerfitness.bmi|floatformat:2 }}<br>
+                        <strong>Goal:</strong> {{ customer.customerfitness.goal }}<br>
+                    {% else %}
+                        <em>No fitness data available for this customer.</em><br>
+                    {% endif %}
+                    <!-- Button to add report -->
+                    <a href="{% url 'add_report' customer.customer_id %}" class="btn btn-primary">Add Report</a>
+                </li>
+            {% empty %}
+                <li>No customers enrolled yet.</li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endblock %}

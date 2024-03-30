@@ -1,0 +1,110 @@
+{% extends './manager/base.html' %}
+
+{% block title %}
+    Home
+{% endblock%} 
+
+{% block css %}
+<style>
+  body {
+    background-color: antiquewhite;
+  }
+  /* External CSS styles for the Hero section */
+  .hero {
+    background-size: cover;
+    background-position: center;
+    height: 500px;
+    position: relative;
+  }
+
+  .hero::before {
+    content: "";
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+
+  .hero .container {
+    position: relative;
+    z-index: 1;
+  }
+  footer {
+    background-color: #333;
+    color: #fff;
+    padding: 20px 0;
+    text-align: center;
+  }
+</style>
+{% endblock css %} 
+
+{% block hero %}
+<!-- Hero Section with Background Image -->
+<section class="hero text-white text-center py-5" style="background-image: url('https://images.pexels.com/photos/3253501/pexels-photo-3253501.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');">
+  <div class="container">
+    <h1>Welcome to Fitness Club</h1>
+    <p>Your path to a healthier lifestyle starts here.</p>
+    <a href="{% url "manager_login" %}" class="btn btn-light btn-lg">Join Now</a>
+  </div>
+</section>
+{% endblock %}
+
+{% block content %}
+<!-- Features Section -->
+<section class="features py-5">
+  <div class="container">
+    <h2 class="text-center mb-4">Why Choose Fitness Club?</h2>
+    <div class="row">
+      <div class="col-md-4">
+        <div class="feature-item text-center">
+          <i class="fas fa-dumbbell fa-3x mb-3"></i>
+          <h3>State-of-the-Art Equipment</h3>
+          <p>We provide top-quality gym equipment to help you achieve your fitness goals.</p>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="feature-item text-center">
+          <i class="fas fa-users fa-3x mb-3"></i>
+          <h3>Expert Trainers</h3>
+          <p>Our certified trainers are dedicated to guiding and supporting you throughout your fitness journey.</p>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="feature-item text-center">
+          <i class="fas fa-calendar-check fa-3x mb-3"></i>
+          <h3>Flexible Schedule</h3>
+          <p>With our flexible class schedules, you can work out at your convenience.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Testimonials Section -->
+<section class="testimonials py-5">
+  <div class="container">
+    <h2 class="text-center mb-4">What Our Members Say</h2>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="testimonial-item text-center">
+          <p>"Fitness Club has transformed my life. The trainers are amazing and the facilities are top-notch."</p>
+          <h4>John Doe</h4>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="testimonial-item text-center">
+          <p>"I've never felt better since joining Fitness Club. The community here is supportive and motivating."</p>
+          <h4>Jane Smith</h4>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<footer>
+    <div class="container">
+      <p>&copy; 2024 Fitness Club. All rights reserved.</p>
+    </div>
+  </footer>
+{% endblock %}

@@ -1,0 +1,26 @@
+{% extends './instructor_base.html' %}
+
+{% block title %}
+    Instructor Dashboard
+{% endblock %}
+
+{% block content %}
+    <h1>Welcome, {{ instructor.full_name }}!</h1>
+    
+    <h2>Your Assigned Workouts:</h2>
+    <div class="row">
+        {% for workout in instructor.workout_set.all %}
+            <div class="col-md-4">
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ workout.workout_name }}</h5>
+                        <p class="card-text">{{ workout.workout_description }}</p>
+                        <p class="card-text">Category: {{ workout.category_name }}</p>
+                        <!-- Button to show customers enrolled in this workout -->
+                        <a href="{% url 'show_customers' workout.workout_id %}" class="btn btn-primary">Show Customers</a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}
