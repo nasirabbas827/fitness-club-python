@@ -49,7 +49,20 @@ def dashboard(request):
     }
     return render(request, 'manager/manager_dashboard.html', context)
 
+from django.http import HttpResponse
+import subprocess
 
+def backup(request):
+    # Perform backup operation here
+    try:
+        # Example: Backup using Django's dumpdata command
+        backup_file = 'backup.json'
+        subprocess.run(['python', 'manage.py', 'dumpdata', '--output', backup_file])
+        # Return a response indicating success
+        return HttpResponse("Database backup successful. <a href='/'>Go back to homepage</a>")
+    except Exception as e:
+        # Return a response indicating failure
+        return HttpResponse(f"Database backup failed: {str(e)}")
 from django.shortcuts import redirect
 
 def logout(request):
